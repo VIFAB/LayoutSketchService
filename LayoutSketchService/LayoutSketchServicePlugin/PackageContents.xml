@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ApplicationPackage SchemaVersion="1.0" Version="1.0" ProductCode="{dc7bb756-8af9-465a-9c28-466b27ad88b1}" Name="LayoutSketchServicePlugin" Description="LayoutSketchServicePluginPlugin Plugin" Author="Inventor IO Dev">
+    <CompanyDetails Name="Autodesk, Inc" Phone="415.555.5555" Url="www.autodesk.com" Email="noreply@autodesk.com" />
+    <Components>
+        <!-- For Inventor Engine, "Platform" attribute must be "Inventor" -->
+        <RuntimeRequirements  OS="Win64" Platform="Inventor" />
+        <!-- For Inventor Plug-in, the "Module" attribute must point to the .addin manifest file. -->
+        <ComponentEntry LoadOnAutoCADStartup="False" LoadOnCommandInvocation="False"
+            AppDescription="LayoutSketchServicePlugin App Package."
+            ModuleName="./Contents/LayoutSketchServicePlugin.Inventor.addin" AppName="LayoutSketchServicePlugin"/>
+    </Components>
+    <EnvironmentVariables>
+    </EnvironmentVariables>
+</ApplicationPackage>

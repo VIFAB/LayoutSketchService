@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+  <assemblyIdentity name="LayoutSketchServicePlugin" version="1.0.0.0"></assemblyIdentity>
+  <clrClass clsid="{dc7bb756-8af9-465a-9c28-466b27ad88b1}" progid="LayoutSketchServicePlugin.PluginServer" threadingModel="Both" name="LayoutSketchServicePlugin.PluginServer"></clrClass>
+  <file name="LayoutSketchServicePlugin.dll" hashalg="SHA1"></file>
+</assembly>

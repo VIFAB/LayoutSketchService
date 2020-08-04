@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Addin Type="Plugin">
+  <ClassId>{dc7bb756-8af9-465a-9c28-466b27ad88b1}</ClassId>
+  <ClientId>{dc7bb756-8af9-465a-9c28-466b27ad88b1}</ClientId>
+  <DisplayName>LayoutSketchServicePlugin</DisplayName>
+  <Description>a LayoutSketchServicePlugin</Description>
+  <Assembly>LayoutSketchServicePlugin.dll</Assembly>
+</Addin>
