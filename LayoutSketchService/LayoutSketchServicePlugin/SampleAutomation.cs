@@ -70,7 +70,7 @@ namespace LayoutSketchServicePlugin
                     LogTrace("Opening sketch layout ipt");
                     string sketchPath = System.IO.Path.Combine(projectdir, @"inputFiles\", "rail-layout-copy.ipt");
                     
-                    Document document = inventorApplication.Documents.Open(sketchPath);
+                    Document document = inventorApplication.Documents.Open(sketchPath,false);
                     LogTrace("Processing " + document.FullFileName);
 
                     Dictionary<string, string> parameters = JsonConvert.DeserializeObject<Dictionary<string, string>>(System.IO.File.ReadAllText(inputParamsPath));
@@ -84,6 +84,7 @@ namespace LayoutSketchServicePlugin
                     }
 
                     document.Update();
+                    
                     LogTrace("Document updated");
                     string resultDir = System.IO.Path.Combine(currentDir, "result");
                     System.IO.Directory.CreateDirectory(resultDir);
@@ -93,6 +94,10 @@ namespace LayoutSketchServicePlugin
                     string jsonPath = System.IO.Path.Combine(resultDir, "outputSketchParameters.json");
                     LogTrace("Writing output json file");
                     System.IO.File.WriteAllText(jsonPath, json);
+                    System.IO.File.ReadAllText(jsonPath);
+                    
+                    
+                    document.SaveAs(resultDir + "/rail-layout-Risexx.ipt", false);
                     LogTrace("Closing document");
                     document.Close();
                 }
