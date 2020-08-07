@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using Autodesk.Forge.DesignAutomation.Model;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Interaction
 {
@@ -13,7 +15,7 @@ namespace Interaction
         /// </summary>
         private static class Constants
         {
-            private const int EngineVersion = 23;
+            private const int EngineVersion = 2021;
             public static readonly string Engine = $"Autodesk.Inventor+{EngineVersion}";
 
             public const string Description = "PUT DESCRIPTION HERE";
@@ -40,7 +42,8 @@ namespace Interaction
             internal static class Parameters
             {
                 public const string InventorDoc = nameof(InventorDoc);
-                public const string OutputIpt = nameof(OutputIpt);
+                public const string JsonParams = nameof(JsonParams);
+                public const string OutputJson = nameof(OutputJson);
             }
         }
 
@@ -50,7 +53,7 @@ namespace Interaction
         /// </summary>
         private static List<string> GetActivityCommandLine()
         {
-            return new List<string> { $"$(engine.path)\\InventorCoreConsole.exe /al $(appbundles[{Constants.Activity.Id}].path) /i $(args[{Constants.Parameters.InventorDoc}].path)" };
+            return new List<string> { $"$(engine.path)\\InventorCoreConsole.exe /al $(appbundles[{Constants.Activity.Id}].path)" };
         }
 
         /// <summary>
@@ -65,16 +68,28 @@ namespace Interaction
                             new Parameter
                             {
                                 Verb = Verb.Get,
-                                Description = "IPT file to process"
+                                Zip = false,
+                                LocalName = "sketchLayout.ipt",
+                                Description = "sketchLayout"
                             }
                         },
                         {
-                            Constants.Parameters.OutputIpt,
+                            Constants.Parameters.JsonParams,
+                            new Parameter
+                            {
+                                Verb = Verb.Get,
+                                Zip = false,
+                                Description = "JSON Object containing parameters to update",
+                                LocalName = "JsonParameters"
+                            }
+                        },
+                        {
+                            Constants.Parameters.OutputJson,
                             new Parameter
                             {
                                 Verb = Verb.Put,
-                                LocalName = "result.ipt",
-                                Description = "Resulting IPT",
+                                LocalName = "result.json",
+                                Description = "Resulting JSON Object",
                                 Ondemand = false,
                                 Required = false
                             }
@@ -87,22 +102,45 @@ namespace Interaction
         /// </summary>
         private static Dictionary<string, IArgument> GetWorkItemArgs()
         {
+            //Forge
+            //var paramData = "{\"RISE\":\"47\", \"RUN\":\"77\"}";
+            //JObject inputJson = JObject.Parse(paramData);
+            //string paramDataStr = inputJson.ToString(Newtonsoft.Json.Formatting.None);
+
+
             // TODO: update the URLs below with real values
             return new Dictionary<string, IArgument>
                     {
+                         {    
+                             Constants.Parameters.InventorDoc,
+                             new XrefTreeArgument
+                             {
+
+                                 Url = string.Format("https://developer.api.autodesk.com/oss/v2/buckets/{0}/objects/{1}", "layoutsketchservice", "rail-layout-copy.ipt"),
+                                 Headers = new Dictionary<string, string>()
+                                 {
+                                     { "Authorization", "Bearer " + InternalToken.access_token }
+                                 }
+                             }
+                        },
                         {
-                            Constants.Parameters.InventorDoc,
+                            Constants.Parameters.JsonParams,
                             new XrefTreeArgument
                             {
-                                Url = "!!! CHANGE ME !!!"
+                                Verb = Verb.Get,
+                                Url = "data:application/json,{\"RISE\":\"47\", \"RUN\":\"77\"}"
                             }
                         },
                         {
-                            Constants.Parameters.OutputIpt,
+                            Constants.Parameters.OutputJson,
                             new XrefTreeArgument
                             {
                                 Verb = Verb.Put,
-                                Url = "!!! CHANGE ME !!!"
+                                Url = string.Format("https://developer.api.autodesk.com/oss/v2/buckets/{0}/objects/{1}", "layoutsketchservice", "result.json"),
+                                Headers = new Dictionary<string, string>()
+                                {
+                                     { "Authorization", "Bearer " + InternalToken.access_token}
+                                }
                             }
                         }
                     };

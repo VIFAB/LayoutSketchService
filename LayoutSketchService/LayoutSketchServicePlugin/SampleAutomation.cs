@@ -41,8 +41,9 @@ namespace LayoutSketchServicePlugin
 
         public void Run(Document doc)
         {
-            LogTrace("Run called with {0}", doc.DisplayName);
+            LogTrace("Run called ");
             RunWithArguments(doc, null);
+
         }
 
         public void RunWithArguments(Document doc, NameValueMap map)
@@ -62,18 +63,32 @@ namespace LayoutSketchServicePlugin
                     string currentDir = System.IO.Directory.GetCurrentDirectory();
                     //get inputParams.json absolute path
                     LogTrace("Getting inputParams.json path");
-                    string inputParamsPath = System.IO.Path.Combine(projectdir, @"inputfiles\", "inputParams.json");
-
+                    //Local debug
+                    //string inputParamsPath = System.IO.Path.Combine(projectdir, @"inputfiles\", "inputParams.json");
+                    //Forge
+                    //string paramData = (string)map.Value[$"_1"];
+                    //LogTrace($"Reading param data {paramData}");
+                    string inputParamsPath = System.IO.Path.Combine(currentDir, "JsonParameters");
 
                     // open rail-layout-copy.ipt by Inventor
                     // get sketch file absolute path
                     LogTrace("Opening sketch layout ipt");
-                    string sketchPath = System.IO.Path.Combine(projectdir, @"inputFiles\", "rail-layout-copy.ipt");
-                    
-                    Document document = inventorApplication.Documents.Open(sketchPath,false);
+
+                    //Local debug
+                    //string sketchPath = System.IO.Path.Combine(projectdir, @"inputFiles\", "rail-layout-copy.ipt");
+                    //Forge
+                    LogTrace("Current Dir" + currentDir);
+                    LogTrace("Project Dir" + projectdir);
+                    string sketchPath = System.IO.Path.Combine(currentDir, "sketchLayout.ipt");
+
+                    Document document = inventorApplication.Documents.Open(sketchPath);
                     LogTrace("Processing " + document.FullFileName);
 
+                    //Local debug
+                    //Dictionary<string, string> parameters = JsonConvert.DeserializeObject<Dictionary<string, string>>(System.IO.File.ReadAllText(inputParamsPath));
+                    //Forge
                     Dictionary<string, string> parameters = JsonConvert.DeserializeObject<Dictionary<string, string>>(System.IO.File.ReadAllText(inputParamsPath));
+
                     LogTrace("Reading json input parameters");
                     foreach (KeyValuePair<string, string> entry in parameters)
                     {
@@ -91,13 +106,15 @@ namespace LayoutSketchServicePlugin
                     LogTrace("Reading updated parameters");
                     var reader = new sketchParameterReader(document, resultDir);
                     string json = reader.ToJsonString();
-                    string jsonPath = System.IO.Path.Combine(resultDir, "outputSketchParameters.json");
+                    //Local Debug
+                    //string jsonPath = System.IO.Path.Combine(resultDir, "outputSketchParameters.json");
+                    string jsonPath = System.IO.Path.Combine(resultDir, "result.json");
                     LogTrace("Writing output json file");
                     System.IO.File.WriteAllText(jsonPath, json);
                     System.IO.File.ReadAllText(jsonPath);
                     
-                    
-                    document.SaveAs(resultDir + "/rail-layout-Risexx.ipt", false);
+                    //Local debug
+                    //document.SaveAs(resultDir + "/rail-layout-Risexx.ipt", false);
                     LogTrace("Closing document");
                     document.Close();
                 }
