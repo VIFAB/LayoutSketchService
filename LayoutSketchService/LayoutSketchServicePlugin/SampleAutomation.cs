@@ -118,6 +118,8 @@ namespace LayoutSketchServicePlugin
                     //document.SaveAs(resultDir + "/rail-layout-Risexx.ipt", false);
                     LogTrace("Closing document");
                     document.Close();
+                    LogTrace("Result JSON Object:");
+                    LogTrace(json); 
                 }
                 
             }

@@ -102,10 +102,6 @@ namespace Interaction
         /// </summary>
         private static Dictionary<string, IArgument> GetWorkItemArgs()
         {
-            //Forge
-            //var paramData = "{\"RISE\":\"47\", \"RUN\":\"77\"}";
-            //JObject inputJson = JObject.Parse(paramData);
-            //string paramDataStr = inputJson.ToString(Newtonsoft.Json.Formatting.None);
 
 
             // TODO: update the URLs below with real values
