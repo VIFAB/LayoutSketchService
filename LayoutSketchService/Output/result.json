@@ -1,0 +1,120 @@
+{
+  "sketchParameters": [
+    {
+      "name": "riserHeight",
+      "value": "RISE / ( ( RUN / TREADWIDTH ) + 1 ul )"
+    },
+    {
+      "name": "runLayout",
+      "value": "RUN"
+    },
+    {
+      "name": "riseLayout",
+      "value": "RISE"
+    },
+    {
+      "name": "frameWidth",
+      "value": "1.5 in"
+    },
+    {
+      "name": "d6",
+      "value": "frameWidth"
+    },
+    {
+      "name": "d7",
+      "value": "frameWidth"
+    },
+    {
+      "name": "guardRailNosingHeight",
+      "value": "42.5 in"
+    },
+    {
+      "name": "stringerEdgeToPostBottom",
+      "value": "6 in"
+    },
+    {
+      "name": "d10",
+      "value": "stringerEdgeToPostBottom"
+    },
+    {
+      "name": "d11",
+      "value": "frameWidth"
+    },
+    {
+      "name": "stairSlope",
+      "value": "28.11 deg"
+    },
+    {
+      "name": "bottomPostLength",
+      "value": "49.703 in"
+    },
+    {
+      "name": "topRailLength",
+      "value": "85.594 in"
+    },
+    {
+      "name": "topRailBottomMitreSlope",
+      "value": "30.95 deg"
+    },
+    {
+      "name": "topRailTopMitreSlope",
+      "value": "27.94 deg"
+    },
+    {
+      "name": "d17",
+      "value": "frameWidth"
+    },
+    {
+      "name": "bottomRailOffsetFromNosing",
+      "value": "5 in"
+    },
+    {
+      "name": "postSpacing",
+      "value": "( runLayout / ceil(runLayout / 48 in) ) - 0.75 in"
+    },
+    {
+      "name": "bottomRailLength",
+      "value": "41.897 in"
+    },
+    {
+      "name": "d22",
+      "value": "frameWidth"
+    },
+    {
+      "name": "railPanelSpacing1",
+      "value": "36.250 in"
+    },
+    {
+      "name": "railPanelSpacing2",
+      "value": "36.250 in"
+    },
+    {
+      "name": "bottomRailSpacingOnSlope",
+      "value": "42.797 in"
+    },
+    {
+      "name": "topPostLength",
+      "value": "49.703 in"
+    },
+    {
+      "name": "railSlope",
+      "value": "28.11 deg"
+    },
+    {
+      "name": "intermediatePostHeight",
+      "value": "48.803 in"
+    },
+    {
+      "name": "RISE",
+      "value": "47 in"
+    },
+    {
+      "name": "RUN",
+      "value": "77 in"
+    },
+    {
+      "name": "TREADWIDTH",
+      "value": "11 in"
+    }
+  ]
+}

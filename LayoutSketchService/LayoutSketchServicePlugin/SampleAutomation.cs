@@ -101,6 +101,7 @@ namespace LayoutSketchServicePlugin
                     document.Update();
                     
                     LogTrace("Document updated");
+                    
                     string resultDir = System.IO.Path.Combine(currentDir, "result");
                     System.IO.Directory.CreateDirectory(resultDir);
                     LogTrace("Reading updated parameters");
@@ -108,7 +109,7 @@ namespace LayoutSketchServicePlugin
                     string json = reader.ToJsonString();
                     //Local Debug
                     //string jsonPath = System.IO.Path.Combine(resultDir, "outputSketchParameters.json");
-                    string jsonPath = System.IO.Path.Combine(resultDir, "result.json");
+                    string jsonPath = System.IO.Path.Combine(currentDir, "result.json");
                     LogTrace("Writing output json file");
                     System.IO.File.WriteAllText(jsonPath, json);
                     System.IO.File.ReadAllText(jsonPath);
